@@ -14,7 +14,7 @@ export default () => {
   // • Hover over variables to inspect their types.
   // • Fix the error on line 18 by changing the value of pi to the expected type.
  
-  let pi = '3.14159';
+  let pi = 3.14159;
   let tau = pi * 2;
   
   console.log('[Exercise 1.1]', `${tau} is ${pi} times two.`);
@@ -25,8 +25,8 @@ export default () => {
   // • Add an explicit type annotation to `pie`
   // • Try assigning invalid types, for fun
 
-  let pie;
-  pie = 'blueberry';
+  let pie: string;
+  pie = 'blueberry'; // string
 
   console.log('[Exercise 1.2]', `I like to eat ${pie}-flavored pie.`);
 
@@ -34,7 +34,7 @@ export default () => {
   // Instructions:
   // • Inspect the error, then fix it.
 
-  let isMark: boolean;
+  let isMark: boolean = true;
 
   console.log('[Exercise 1.3]', `${isMark ? 'Oh, hi Mark' : 'Who are you?'}`);
 
