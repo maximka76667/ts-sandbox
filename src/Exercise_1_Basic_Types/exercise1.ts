@@ -94,9 +94,9 @@ export default () => {
   const inventoryItem: InventoryItem = ['fidget wibbit', 11];
 
   // later we destructure it
-  const [name, qty]: InventoryItem = inventoryItem;
+  const [name, qty] = inventoryItem;
 
-  const msg: string = addInventory(name, qty);
+  const msg = addInventory(name, qty);
 
   console.log('[Exercise 1.6]', msg);
 
