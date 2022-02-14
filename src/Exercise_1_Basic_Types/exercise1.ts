@@ -34,7 +34,7 @@ export default () => {
   // Instructions:
   // • Inspect the error, then fix it.
 
-  let isMark: boolean = true;
+  let isMark: boolean = false;
 
   console.log('[Exercise 1.3]', `${isMark ? 'Oh, hi Mark' : 'Who are you?'}`);
 
@@ -43,17 +43,17 @@ export default () => {
   // • Add type annotations (as explicit as possible)
   // • Fix errors (if applicable)
 
-  const integer = 6;
-  const float = 6.66;
-  const hex = 0xf00d;
-  const binary = 0b1010011010;
-  const octal = 0o744;
-  const negZero = -0;
-  const actuallyNumber = NaN;
-  const largestNumber = Number.MAX_VALUE;
-  const mostBiglyNumber = Infinity;
+  const integer: number = 6;
+  const float: number = 6.66;
+  const hex: number = 0xf00d;
+  const binary: number = 0b1010011010;
+  const octal: number = 0o744;
+  const negZero: number = -0;
+  const actuallyNumber: number = NaN;
+  const largestNumber: number = Number.MAX_VALUE;
+  const mostBiglyNumber: number = Infinity;
 
-  const members: any[] = [
+  const members: number[] = [
     integer,
     float,
     hex,
@@ -65,7 +65,7 @@ export default () => {
     mostBiglyNumber
   ];
 
-  members[0] = '12345';
+  members[0] = 12345;
 
   console.log('[Exercise 1.4]', members);
 
@@ -74,10 +74,10 @@ export default () => {
   // • Add type annotations (as explicit as possible)
   // • Fix errors (if applicable)
 
-  const sequence = Array.from(Array(10).keys());
-  const animals = ['pangolin', 'aardvark', 'echidna', 'binturong'];
-  const stringsAndNumbers = [1, 'one', 2, 'two', 3, 'three'];
-  const allMyArrays = [sequence, animals, stringsAndNumbers];
+  const sequence: number[] = Array.from(Array(10).keys());
+  const animals: string[] = ['pangolin', 'aardvark', 'echidna', 'binturong'];
+  const stringsAndNumbers: (string | number)[] = [1, 'one', 2, 'two', 3, 'three'];
+  const allMyArrays: (string | number)[][] = [sequence, animals, stringsAndNumbers];
 
   console.log('Exercise 1.5', allMyArrays);
 
@@ -89,12 +89,14 @@ export default () => {
   // We want to represent an inventoryItem as a structure where
   // the first entry is the item name and the second is the quantity
 
-  const inventoryItem = ['fidget wibbit', 11];
+  type InventoryItem = [string, number];
+
+  const inventoryItem: InventoryItem = ['fidget wibbit', 11];
 
   // later we destructure it
-  const [name, qty] = inventoryItem;
+  const [name, qty]: InventoryItem = inventoryItem;
 
-  const msg = addInventory(name, qty);
+  const msg: string = addInventory(name, qty);
 
   console.log('[Exercise 1.6]', msg);
 
