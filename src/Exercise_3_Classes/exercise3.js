@@ -67,42 +67,47 @@ exports["default"] = function () {
     // • Make it so that the name member cannot be publicly accessed
     var Animal = (function () {
         function Animal(name) {
+            this.name = name;
         }
         Animal.prototype.move = function (meters) {
             console.log(this.name + " moved " + meters + "m.");
         };
         return Animal;
     }());
-    var Snake = (function () {
+    var Snake = (function (_super) {
+        __extends(Snake, _super);
         function Snake() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         Snake.prototype.move = function (meters) {
+            if (meters === void 0) { meters = 5; }
             console.log('Slithering...');
-            // should call on parent's `move` method, w/ a default
-            // slither of 5 meters
+            _super.prototype.move.call(this, meters);
         };
         return Snake;
-    }());
-    var Pony = (function () {
+    }(Animal));
+    var Pony = (function (_super) {
+        __extends(Pony, _super);
         function Pony() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
         Pony.prototype.move = function (meters) {
+            if (meters === void 0) { meters = 60; }
             console.log('Galloping...');
-            // should call on parent's `move` method, w/ a default
-            // gallop of 60 meters
+            _super.prototype.move.call(this, meters);
         };
         return Pony;
-    }());
+    }(Animal));
     // The class Animal should not be instantiable.
     // Delete or comment out once the desired error is achieved.
     var andrew = new Animal("Andrew the Animal");
     andrew.move(5);
     var sammy = new Snake("Sammy the Snake");
     sammy.move();
-    console.log(sammy.name); // Should return error
+    // console.log(sammy.name); // Should return error
     var pokey = new Pony("Pokey the Pony");
     pokey.move(34);
-    console.log(pokey.name); // Should return error
+    // console.log(pokey.name); // Should return error
     // ======== Exercise 3.5 ========
     // Goals:
     // • Make it so that only the Desk and Chair classes can see the 
@@ -110,6 +115,7 @@ exports["default"] = function () {
     var Furniture = (function () {
         function Furniture(manufacturer) {
             if (manufacturer === void 0) { manufacturer = 'IKEA'; }
+            this.manufacturer = manufacturer;
         }
         return Furniture;
     }());
@@ -135,10 +141,10 @@ exports["default"] = function () {
     }(Furniture));
     var desk = new Desk();
     desk.kind();
-    desk.manufacturer; // Should return error
+    // desk.manufacturer; // Should return error
     var chair = new Chair();
     chair.kind();
-    chair.manufacturer; // Should return error
+    // chair.manufacturer; // Should return error
     // ======== Exercise 3.6 ========
     // Goals:
     // • Eliminate the error without changing references to `Student.school`
@@ -149,11 +155,10 @@ exports["default"] = function () {
         }
         ;
         Student.prototype.introduction = function () {
-            console.log('[Exercise 3.6]', "Hi, my name is " + this.name + " and I attend " + Student.school);
+            console.log('[Exercise 3.6]', "Hi, my name is " + this.name + " and I attend " + this.school);
         };
         return Student;
     }());
     var student = new Student('Morty');
-    console.log(Student.school);
     student.introduction();
 };
