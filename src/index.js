@@ -10,11 +10,11 @@ exports.__esModule = true;
 // import exercise1 from './Exercise_1_Basic_Types/exercise1';
 // exercise1();
 // ======== Exercise 2: Functions ==========
-var exercise2_1 = require("./Exercise_2_Functions/exercise2");
-exercise2_1["default"]();
+// import exercise2 from './Exercise_2_Functions/exercise2';
+// exercise2();
 // ======== Exercise 3: Classes ============
-// import exercise3 from './Exercise_3_Classes/exercise3';
-// exercise3();
+var exercise3_1 = require("./Exercise_3_Classes/exercise3");
+exercise3_1["default"]();
 // ======== Exercise 4: Interfaces =========
 // import exercise4 from './Exercise_4_Interfaces/exercise4';
 // exercise4();

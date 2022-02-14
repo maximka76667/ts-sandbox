@@ -54,6 +54,7 @@ exports["default"] = function () {
             this.title = title;
             this.salary = salary;
         }
+        ;
         return Employee;
     }());
     var employee = new Employee('Engineer', 100000);
