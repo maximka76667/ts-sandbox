@@ -79,7 +79,7 @@ export default () => {
   // • Restrict type of `value` to `string OR number`
   // • Fix any resulting errors.
 
-  function doStuff(value: any): void {
+  function doStuff(value: string | number): void {
     if (typeof value === 'string') {
       console.log(value.toUpperCase().split('').join(' '));
     } else if (typeof value === 'number') {
@@ -93,8 +93,8 @@ export default () => {
   doStuff(22);
   doStuff(222);
   doStuff('hello');
-  doStuff(true);
-  doStuff({});
+  // doStuff(true);
+  // doStuff({});
 
   console.log('[Exercise 5.1]');
 
@@ -103,8 +103,11 @@ export default () => {
   // • Use a type guard to fill out the body of the `padLeft` function.
 
   function padLeft(value: string, padding: number | string): string {
-    // if padding is a number, return `${Array(padding + 1).join(' ')}${value}`
-    // if padding is a string, return padding + value
+    if(typeof padding === "number") {
+      return `${Array(padding + 1).join(' ')}${value}`;
+    } else {
+      return padding + value;
+    }
   }
 
   console.log('[Exercise 5.2]', `
@@ -113,6 +116,7 @@ export default () => {
     ${padLeft('🐕', '🐩🐩')}
     ${padLeft('🐕', '🐩🐩🐩')}
     ${padLeft('🐕', '🐩🐩🐩🐩')}
+    ${padLeft("321", "5")}
   `);
 
   // ======== Exercise 5.3 ========
@@ -122,8 +126,9 @@ export default () => {
   // • Bonus: turn `flatten` into a generic function
 
   const numbers = [1, 2, 3, [44, 55], 6, [77, 88], 9, 10];
+  const strings = ["3", "Hello", ["Hello, array!", "Hi"], "Hola"];
 
-  function flatten(array) {
+  function flatten<Type>(array: (Type | Type[])[]): Type[] {
     const flattened = [];
 
     for (const element of array) {
@@ -140,8 +145,9 @@ export default () => {
   }
 
   const flattenedNumbers = flatten(numbers);
+  const flattenedStrings = flatten(strings);
 
-  console.log('[Exercise 5.3]', flattenedNumbers);
+  console.log('[Exercise 5.3]', flattenedNumbers, flattenedStrings);
 
   // ======== Exercise 5.4 ========
   // 
@@ -165,7 +171,10 @@ export default () => {
     swim(depth: number): void;
   }
 
-  // add type alias(es) here
+  // types
+  type Animal = Fish | Bird;
+  type FishLike = EggLayer & Swimmer;
+  type BirdLike = EggLayer & Flyer
 
   class Bird implements BirdLike {
     constructor(public species: string) {}
@@ -202,10 +211,13 @@ export default () => {
     return animals[Math.floor(Math.random() * animals.length)];
   }
 
-  function interrogateAnimal(animal = getRandomAnimal()) {
-    animal.swim(10) // call only if it is a fish
-    animal.fly(10); // call only if it is a bird
-
+  function interrogateAnimal(animal: Animal = getRandomAnimal()) {
+    if(animal instanceof Fish) {
+      animal.swim(10); // call only if it is a fish
+    }
+    else if (animal instanceof Bird) {
+      animal.fly(10); // call only if it is a bird
+    }
     return animal.species;
   }
 
